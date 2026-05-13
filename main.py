@@ -33,7 +33,8 @@ def build_default_interface(dataset_path: str = "datasets/genshin_impact") -> Sc
         t_max=T_MAX,
         delta_t_jnd=5.0,
     )
-    dkl_optimizer = AdaptiveDKLPowerOptimizer(k_base=(0.003, 0.003, 0.001), w_weights=WEIGHTS_NORM.flatten())
+    dkl_optimizer = AdaptiveDKLPowerOptimizer(scale=(0.003, 0.003, 0.001), w_weights=WEIGHTS_NORM.flatten())
+    # dkl_optimizer = AdaptiveDKLPowerOptimizer(scale=(1.1370e-02, 6.2512e-04, 2.6320e-05), w_weights=WEIGHTS_NORM.flatten(), alpha=0.6)
     pipeline = ScreenAdaptorPipeline([dkl_optimizer])
     # pipeline = ScreenAdaptorPipeline([ellipse_adaptor, gradual_adaptor])
     return ScreenPowerReductionInterface(
